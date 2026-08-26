@@ -1,0 +1,32 @@
+/* Blog Specific Styles */
+.blog-layout { min-height: 100vh; }
+.blog-header { text-align: center; border-bottom: 1px solid var(--gt-slate); }
+.blog-header p { margin: 24px auto 0; font-size: 20px; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 80px; }
+.post-card {
+  background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 32px;
+  border-radius: 4px; display: flex; flex-direction: column; align-items: flex-start;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px color-mix(in srgb, var(--gt-navy) 10%, transparent); }
+.post-kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-slate); margin-bottom: 16px; }
+.post-title { font-family: var(--didone); font-size: 26px; color: var(--gt-navy); margin-bottom: 16px; line-height: 1.2; }
+.post-excerpt { font-size: 15px; color: var(--gt-slate); line-height: 1.5; margin-bottom: 24px; flex-grow: 1; }
+.post-link { font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-oxblood); text-decoration: none; }
+.post-link:hover { text-decoration: underline; }
+
+.campaign-header { border-top: 2px solid var(--gt-navy); padding-top: 48px; margin-bottom: 48px; max-width: 800px; }
+.campaign-list { display: grid; gap: 32px; max-width: 800px; }
+.campaign-post {
+  background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 40px;
+  border-left: 4px solid var(--gt-oxblood); border-radius: 0 4px 4px 0;
+}
+.cp-meta { font-family: var(--didone); font-size: 18px; color: var(--gt-oxblood); font-style: italic; margin-bottom: 12px; }
+.cp-title { font-family: var(--didone); font-size: 32px; color: var(--gt-navy); margin-bottom: 24px; line-height: 1.2; }
+.cp-message { font-size: 16px; line-height: 1.6; color: var(--gt-navy); margin-bottom: 24px; }
+.cp-asset {
+  background: color-mix(in srgb, var(--gt-mist) 20%, transparent);
+  padding: 16px 24px; border: 1px dashed var(--gt-slate);
+  font-family: var(--grotesque); font-size: 14px; font-weight: 500; color: var(--gt-slate);
+}

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GermaineTutoring — Metropolitan Riviera Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Metropolitan Riviera Colors - Production Translation */
+  --gt-navy: #081117;
+  --gt-marine: #101E26;
+  --gt-porcelain: #F5F6F4;
+  --gt-mist: #AEB7B6;
+  --gt-slate: #597078;
+  --gt-oxblood: #632C36;
+  --gt-white: #FFFFFF;
+  --gt-black: #000000;
+
+  /* Typography */
+  --didone: 'Playfair Display', Didot, 'Bodoni MT', serif;
+  --grotesque: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Base Resets */
+*, *::before, *::after { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: var(--gt-navy); color: var(--gt-porcelain); font-family: var(--grotesque); -webkit-font-smoothing: antialiased; }
+
+/* Stage Visibility */
+.stage { display: none; width: 100%; min-height: 100vh; }
+.stage.active { display: block; }
+
+/* Global Mockup Navigation */
+.mockup-nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: center;
+  background: color-mix(in srgb, var(--gt-navy) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gt-marine);
+}
+.mockup-nav button {
+  appearance: none; border: none; background: transparent; color: var(--gt-mist);
+  padding: 16px 24px; font-family: var(--grotesque); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+  transition: all 0.2s ease; border-bottom: 2px solid transparent;
+}
+.mockup-nav button:hover { color: var(--gt-porcelain); }
+.mockup-nav button.active { color: var(--gt-porcelain); border-bottom-color: var(--gt-oxblood); }
+
+/* Editorial Elements */
+h1, h2, h3, .hero-title { font-family: var(--didone); font-weight: 400; margin: 0; }
+.hero-title { font-size: clamp(48px, 8vw, 104px); line-height: 1.05; letter-spacing: 0.04em; text-transform: uppercase; }
+.hero-kicker { font-family: var(--grotesque); font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gt-mist); font-weight: 500; margin-bottom: 12px; }
+.body-copy { font-size: clamp(16px, 1.2vw, 19px); line-height: 1.6; color: var(--gt-mist); max-width: 65ch; }
+
+/* Global Layout Containers */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-pad { padding: 80px 0; }
+.dark-section { background: var(--gt-navy); color: var(--gt-porcelain); }
+.marine-section { background: var(--gt-marine); color: var(--gt-porcelain); }
+.light-section { background: var(--gt-porcelain); color: var(--gt-navy); }
+
+/* Buttons & CTAs */
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 28px; background: var(--gt-porcelain); color: var(--gt-navy);
+  font-family: var(--grotesque); font-weight: 600; font-size: 14px; letter-spacing: 0.08em;
+  text-transform: uppercase; text-decoration: none; border-radius: 2px;
+  transition: background 0.2s; cursor: pointer; border: none;
+}
+.btn-primary:hover { background: var(--gt-mist); }
+.btn-outline {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 28px; background: transparent; color: var(--gt-porcelain);
+  border: 1px solid var(--gt-mist);
+  font-family: var(--grotesque); font-weight: 600; font-size: 14px; letter-spacing: 0.08em;
+  text-transform: uppercase; text-decoration: none; border-radius: 2px;
+  transition: all 0.2s; cursor: pointer;
+}
+.btn-outline:hover { background: var(--gt-marine); border-color: var(--gt-porcelain); }
+.btn-outline.dark { color: var(--gt-navy); border-color: var(--gt-slate); }
+.btn-outline.dark:hover { background: var(--gt-navy); color: var(--gt-porcelain); }
+
+/* Marketing Specific Styles */
+.marketing-header {
+  background: color-mix(in srgb, var(--gt-navy) 95%, transparent);
+  border-bottom: 1px solid var(--gt-slate);
+  padding: 16px 0;
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: var(--didone); font-size: 24px; color: var(--gt-porcelain); }
+.logo span { font-style: italic; color: var(--gt-mist); }
+.marketing-nav { display: flex; gap: 32px; }
+.marketing-nav a {
+  color: var(--gt-porcelain); text-decoration: none; font-size: 14px;
+  font-weight: 500; letter-spacing: 0.05em; transition: color 0.2s;
+}
+.marketing-nav a:hover { color: var(--gt-mist); }
+
+.marketing-hero { text-align: center; padding: 120px 0; border-bottom: 1px solid var(--gt-slate); }
+.marketing-hero .hero-actions { margin-top: 48px; }
+
+.proof-strip { padding: 48px 0; border-bottom: 1px solid var(--gt-slate); }
+.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+.proof-item { border-right: 1px solid var(--gt-slate); }
+.proof-item:last-child { border-right: none; }
+.proof-num { font-family: var(--didone); font-size: 48px; color: var(--gt-porcelain); margin-bottom: 8px; }
+.proof-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-mist); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.section-heading { font-family: var(--didone); font-size: 48px; margin-bottom: 32px; line-height: 1.1; }
+.section-heading.centered { text-align: center; }
+.subsection-heading { font-size: 18px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; margin-top: 32px; }
+
+.program-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+.program-card {
+  background: var(--gt-marine); padding: 40px; border: 1px solid var(--gt-slate);
+  display: flex; flex-direction: column; align-items: flex-start;
+  transition: transform 0.2s; position: relative;
+}
+.program-card.featured { border-color: var(--gt-oxblood); background: color-mix(in srgb, var(--gt-marine) 95%, var(--gt-oxblood)); transform: scale(1.02); }
+.featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gt-oxblood); color: var(--gt-porcelain); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 12px; border-radius: 20px; }
+.program-tier { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-mist); margin-bottom: 16px; }
+.program-name { font-family: var(--didone); font-size: 32px; margin-bottom: 16px; color: var(--gt-porcelain); }
+.program-desc { font-size: 15px; line-height: 1.5; color: var(--gt-mist); }
+
+.contact-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+
+.marketing-footer { padding: 64px 0 32px; border-top: 1px solid var(--gt-slate); }
+.footer-inner { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--gt-mist); text-decoration: none; font-size: 14px; }
+.footer-copy { font-size: 13px; color: var(--gt-slate); }
+
+/* Course Portal Specific Styles */
+.course-portal { display: flex; min-height: 100vh; }
+.course-sidebar {
+  width: 280px; flex-shrink: 0; border-right: 1px solid var(--gt-slate);
+  padding: 32px 0; display: flex; flex-direction: column;
+}
+.sidebar-logo {
+  font-family: var(--didone); font-size: 24px; color: var(--gt-porcelain);
+  padding: 0 32px 32px; border-bottom: 1px solid var(--gt-slate); margin-bottom: 32px;
+}
+.sidebar-logo span { font-style: italic; color: var(--gt-mist); }
+.sidebar-nav { display: flex; flex-direction: column; }
+.sidebar-nav a {
+  padding: 12px 32px; color: var(--gt-mist); text-decoration: none;
+  font-size: 14px; font-weight: 500; letter-spacing: 0.05em; transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover, .sidebar-nav a.active {
+  color: var(--gt-porcelain); background: color-mix(in srgb, var(--gt-navy) 40%, transparent);
+  border-left-color: var(--gt-oxblood);
+}
+
+.course-main { flex-grow: 1; padding: 48px; overflow-y: auto; color: var(--gt-navy); }
+.portal-section { display: none; max-width: 900px; }
+.portal-section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.portal-heading { font-family: var(--didone); font-size: 42px; margin-bottom: 40px; color: var(--gt-navy); border-bottom: 1px solid var(--gt-mist); padding-bottom: 16px; }
+
+/* Dashboard */
+.stat-tally-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+.stat-card { background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 24px; border-radius: 4px; text-align: center; }
+.stat-value { font-family: var(--didone); font-size: 42px; color: var(--gt-navy); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+.stat-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-slate); }
+
+.progress-panel { background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 32px; border-radius: 4px; margin-bottom: 48px; }
+.panel-title { font-family: var(--didone); font-size: 24px; color: var(--gt-navy); margin-bottom: 24px; }
+.progress-bar-container { height: 8px; background: var(--gt-mist); border-radius: 4px; overflow: hidden; margin-bottom: 12px; }
+.progress-bar { height: 100%; background: var(--gt-oxblood); }
+.progress-meta { font-size: 14px; color: var(--gt-slate); font-weight: 500; }
+
+.brief-card { background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 24px; border-radius: 4px; display: flex; align-items: center; justify-content: space-between; }
+.brief-date { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-oxblood); margin-bottom: 4px; }
+.brief-topic { font-size: 16px; font-weight: 500; color: var(--gt-navy); }
+
+/* Library */
+.library-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.library-wing { background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 32px; border-radius: 4px; }
+.wing-title { font-family: var(--didone); font-size: 28px; color: var(--gt-navy); margin-bottom: 16px; }
+.wing-desc { font-size: 15px; color: var(--gt-slate); line-height: 1.5; margin-bottom: 24px; }
+
+/* Practice */
+.practice-filters { display: flex; gap: 16px; margin-bottom: 32px; }
+.practice-filters select {
+  padding: 10px 16px; border: 1px solid var(--gt-mist); border-radius: 4px;
+  background: var(--gt-white); font-family: var(--grotesque); font-size: 14px; color: var(--gt-navy);
+}
+.practice-list { border: 1px solid var(--gt-mist); border-radius: 4px; background: var(--gt-white); margin-bottom: 32px; }
+.practice-item { padding: 16px 24px; border-bottom: 1px solid var(--gt-mist); display: flex; justify-content: space-between; align-items: center; }
+.practice-item:last-child { border-bottom: none; }
+.pi-meta { font-weight: 600; font-size: 15px; }
+.tag { display: inline-block; padding: 2px 8px; background: var(--gt-navy); color: var(--gt-porcelain); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 12px; margin-left: 8px; }
+.tag.difficulty { background: var(--gt-slate); }
+.explanation-panel { background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 32px; border-radius: 4px; border-top: 4px solid var(--gt-navy); }
+
+/* Review */
+.centerpiece-panel { padding: 32px; border-radius: 4px; margin-bottom: 32px; text-align: center; }
+.five-step-method { display: flex; justify-content: space-between; max-width: 600px; margin: 0 auto; }
+.five-step-method span { font-weight: 600; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-porcelain); }
+
+.journal-table { width: 100%; border-collapse: collapse; background: var(--gt-white); font-size: 14px; }
+.journal-table th, .journal-table td { border: 1px solid var(--gt-mist); padding: 12px 16px; text-align: left; vertical-align: top; }
+.journal-table thead th { background: var(--gt-navy); color: var(--gt-porcelain); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; font-size: 12px; }
+.verdict { font-size: 11px; text-transform: uppercase; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 8px; display: inline-block; }
+.verdict.wrong { background: color-mix(in srgb, var(--gt-oxblood) 20%, transparent); color: var(--gt-oxblood); }
+.verdict.right { background: color-mix(in srgb, var(--gt-slate) 20%, transparent); color: var(--gt-slate); }
+.session-tally { text-align: right; margin-top: 16px; font-weight: 600; font-size: 14px; color: var(--gt-slate); }
+
+.dark-text { color: var(--gt-navy); }
+
+/* Blog Specific Styles */
+.blog-layout { min-height: 100vh; }
+.blog-header { text-align: center; border-bottom: 1px solid var(--gt-slate); }
+.blog-header p { margin: 24px auto 0; font-size: 20px; }
+
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 80px; }
+.post-card {
+  background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 32px;
+  border-radius: 4px; display: flex; flex-direction: column; align-items: flex-start;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.post-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px color-mix(in srgb, var(--gt-navy) 10%, transparent); }
+.post-kicker { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-slate); margin-bottom: 16px; }
+.post-title { font-family: var(--didone); font-size: 26px; color: var(--gt-navy); margin-bottom: 16px; line-height: 1.2; }
+.post-excerpt { font-size: 15px; color: var(--gt-slate); line-height: 1.5; margin-bottom: 24px; flex-grow: 1; }
+.post-link { font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-oxblood); text-decoration: none; }
+.post-link:hover { text-decoration: underline; }
+
+.campaign-header { border-top: 2px solid var(--gt-navy); padding-top: 48px; margin-bottom: 48px; max-width: 800px; }
+.campaign-list { display: grid; gap: 32px; max-width: 800px; }
+.campaign-post {
+  background: var(--gt-white); border: 1px solid var(--gt-mist); padding: 40px;
+  border-left: 4px solid var(--gt-oxblood); border-radius: 0 4px 4px 0;
+}
+.cp-meta { font-family: var(--didone); font-size: 18px; color: var(--gt-oxblood); font-style: italic; margin-bottom: 12px; }
+.cp-title { font-family: var(--didone); font-size: 32px; color: var(--gt-navy); margin-bottom: 24px; line-height: 1.2; }
+.cp-message { font-size: 16px; line-height: 1.6; color: var(--gt-navy); margin-bottom: 24px; }
+.cp-asset {
+  background: color-mix(in srgb, var(--gt-mist) 20%, transparent);
+  padding: 16px 24px; border: 1px dashed var(--gt-slate);
+  font-family: var(--grotesque); font-size: 14px; font-weight: 500; color: var(--gt-slate);
+}
+
+
+</style>
+</head>
+<body>
+
+<nav class="mockup-nav" aria-label="Mockup Navigation">
+  <button data-target="marketing" class="active">Marketing</button>
+  <button data-target="course">Course Portal</button>
+  <button data-target="blog">Blog</button>
+</nav>
+
+<div id="marketing" class="stage active">
+  <!-- Global Nav -->
+<header class="marketing-header">
+  <div class="container header-inner">
+    <div class="logo">Germaine<span>Tutoring</span></div>
+    <nav class="marketing-nav">
+      <a href="#">Methodology</a>
+      <a href="#">Programs</a>
+      <a href="#">Contact</a>
+    </nav>
+    <button class="btn-primary" onclick="alert('Open Booking Modal')">Book a Consult</button>
+  </div>
+</header>
+
+<!-- Hero Band -->
+<section class="dark-section section-pad marketing-hero">
+  <div class="container">
+    <div class="hero-kicker">Clarity &amp; Proven Methods</div>
+    <h1 class="hero-title">There is no LSAT magic, <br>only repeatable processes.</h1>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="alert('Open Booking Modal')">Book a Consult</button>
+    </div>
+  </div>
+</section>
+
+<!-- Proof Strip -->
+<section class="marine-section proof-strip">
+  <div class="container proof-grid">
+    <div class="proof-item">
+      <div class="proof-num">180</div>
+      <div class="proof-label">Perfect LSAT (2020)</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">500+</div>
+      <div class="proof-label">Students Taught</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">14+</div>
+      <div class="proof-label">Average Point Improvement</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">483</div>
+      <div class="proof-label">Lesson Course Library</div>
+    </div>
+  </div>
+</section>
+
+<!-- Methodology -->
+<section class="light-section section-pad methodology">
+  <div class="container">
+    <div class="grid-2">
+      <div>
+        <h2 class="section-heading">Methodology</h2>
+        <h3 class="subsection-heading">The Philosophy</h3>
+        <p class="body-copy">Emphasize the core belief: "There is no LSAT magic, only repeatable processes."</p>
+      </div>
+      <div>
+        <h3 class="subsection-heading">Our Approach</h3>
+        <p class="body-copy">Break down complex reasoning into simple, atomized steps.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Programs -->
+<section class="dark-section section-pad programs">
+  <div class="container">
+    <h2 class="section-heading centered">Programs</h2>
+    <div class="program-grid">
+      <div class="program-card">
+        <h3 class="program-tier">Tier 1</h3>
+        <h4 class="program-name">2-Hour Acceleration</h4>
+        <p class="program-desc">For targeted troubleshooting.</p>
+      </div>
+      <div class="program-card featured">
+        <div class="featured-badge">Featured</div>
+        <h3 class="program-tier">Tier 2</h3>
+        <h4 class="program-name">8-Hour Elevation</h4>
+        <p class="program-desc">Comprehensive review and strategy rebuild.</p>
+      </div>
+      <div class="program-card">
+        <h3 class="program-tier">Tier 3</h3>
+        <h4 class="program-name">Elite Retainer</h4>
+        <p class="program-desc">Full-cycle admissions and test prep support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pilot Details & Contact -->
+<section class="marine-section section-pad contact-strip">
+  <div class="container contact-grid">
+    <div>
+      <h2 class="section-heading">Ready to change how you see the LSAT?</h2>
+      <p class="body-copy">Specific pilot program details matching the Programs tier formatting are available upon request.</p>
+    </div>
+    <div class="contact-action">
+      <button class="btn-primary" onclick="alert('Open Booking Modal')">Book a Consult</button>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="marketing-footer dark-section">
+  <div class="container footer-inner">
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+    <div class="footer-copy">&copy; 2024 Germaine Tutoring. All rights reserved.</div>
+  </div>
+</footer>
+
+</div>
+
+<div id="course" class="stage">
+  <div class="course-portal">
+  <aside class="course-sidebar marine-section">
+    <div class="sidebar-logo">GT<span>Portal</span></div>
+    <nav class="sidebar-nav">
+      <a href="#dashboard" class="active">Dashboard</a>
+      <a href="#course-library">Course</a>
+      <a href="#practice">Practice</a>
+      <a href="#tests">Tests</a>
+      <a href="#review">Blind Review</a>
+      <a href="#sessions">Sessions</a>
+      <a href="#homework">Homework</a>
+    </nav>
+  </aside>
+
+  <main class="course-main light-section">
+    <!-- Dashboard -->
+    <section id="dashboard" class="portal-section active">
+      <h2 class="portal-heading">Dashboard</h2>
+
+      <div class="stat-tally-row">
+        <div class="stat-card">
+          <div class="stat-value">1,245</div>
+          <div class="stat-label">Questions Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">86%</div>
+          <div class="stat-label">Accuracy (Last 100)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">168</div>
+          <div class="stat-label">Last PT Score</div>
+        </div>
+      </div>
+
+      <div class="progress-panel">
+        <h3 class="panel-title">Course Progress</h3>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 62%;"></div>
+        </div>
+        <div class="progress-meta">62% Completed &mdash; Logical Reasoning Module 4</div>
+      </div>
+
+      <div class="next-session-brief">
+        <h3 class="panel-title">Next-Session Brief</h3>
+        <div class="brief-card">
+          <div class="brief-date">Oct 12 &middot; 4:00 PM EST</div>
+          <div class="brief-topic">Focus: Flaw &amp; Strengthen Questions, PT 89 RC</div>
+          <button class="btn-outline dark">Join Zoom Room</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Learning Library -->
+    <section id="course-library" class="portal-section">
+      <h2 class="portal-heading">Learning Library</h2>
+      <div class="library-grid">
+        <div class="library-wing">
+          <h3 class="wing-title">Logical Reasoning</h3>
+          <p class="wing-desc">LR modules, progress tracking, access to "21 Question Types".</p>
+          <button class="btn-outline dark">Enter Module</button>
+        </div>
+        <div class="library-wing">
+          <h3 class="wing-title">Reading Comprehension</h3>
+          <p class="wing-desc">RC modules, progress tracking, access to "Difficulty Drivers".</p>
+          <button class="btn-outline dark">Enter Module</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice & Explanations -->
+    <section id="practice" class="portal-section">
+      <h2 class="portal-heading">Practice &amp; Explanations</h2>
+      <div class="practice-filters">
+        <select><option>All Question Types</option><option>Flaw</option><option>Inference</option></select>
+        <select><option>All Difficulties</option><option>Level 1-2</option><option>Level 4-5</option></select>
+      </div>
+
+      <div class="practice-list">
+        <div class="practice-item">
+          <div class="pi-meta">PT 89 &middot; S2 &middot; Q14 &mdash; <span class="tag">Flaw</span> <span class="tag difficulty">Level 4</span></div>
+          <div class="pi-actions">
+            <button class="btn-outline dark">View Explanation</button>
+          </div>
+        </div>
+        <div class="practice-item">
+          <div class="pi-meta">PT 89 &middot; S2 &middot; Q15 &mdash; <span class="tag">Inference</span> <span class="tag difficulty">Level 5</span></div>
+          <div class="pi-actions">
+            <button class="btn-outline dark">View Explanation</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="explanation-panel">
+        <h3 class="panel-title">Full Explanation: PT 89, S2, Q14</h3>
+        <p class="body-copy dark-text">Detailed breakdown of the question, including gap analysis and correct/incorrect answer rationales.</p>
+      </div>
+    </section>
+
+    <!-- Review Journal -->
+    <section id="review" class="portal-section">
+      <h2 class="portal-heading">Review &amp; Wrong Answer Journal</h2>
+      <div class="centerpiece-panel dark-section">
+        <div class="five-step-method">
+          <span>1. Job</span>
+          <span>2. Claims</span>
+          <span>3. Compress</span>
+          <span>4. Connect</span>
+          <span>5. Prephrase</span>
+        </div>
+      </div>
+
+      <table class="journal-table">
+        <thead>
+          <tr>
+            <th>Identifier</th>
+            <th>Analysis</th>
+            <th>Correction</th>
+            <th>Rule for the Future</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PT89.S2.Q14 <span class="verdict wrong">Incorrect</span></td>
+            <td>Identified standard flaw, missed nuance in conditional. Picked (B).</td>
+            <td>(B) is reversed logic. (E) correctly identifies the gap.</td>
+            <td>Always diagram "unless" statements explicitly.</td>
+          </tr>
+          <tr>
+            <td>PT89.S2.Q18 <span class="verdict right">Correct</span></td>
+            <td>Prephrased the exact answer.</td>
+            <td>Confirmed by matching (D).</td>
+            <td>Trust the prephrase when standard matches perfectly.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="session-tally">Session Tally: 14 Questions / 2 Missed</div>
+    </section>
+
+    <!-- History & Admin -->
+    <section id="tests" class="portal-section">
+       <h2 class="portal-heading">History &amp; Admin</h2>
+       <p class="body-copy dark-text">Lists of completed prep tests, assigned homework sets, and past tutoring session recordings/notes go here.</p>
+    </section>
+
+  </main>
+</div>
+<script>
+  document.querySelectorAll('.sidebar-nav a').forEach(a => {
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelectorAll('.sidebar-nav a').forEach(nav => nav.classList.remove('active'));
+      document.querySelectorAll('.portal-section').forEach(sec => sec.classList.remove('active'));
+
+      a.classList.add('active');
+      const targetId = a.getAttribute('href').substring(1);
+      const targetSec = document.getElementById(targetId);
+      if(targetSec) targetSec.classList.add('active');
+    });
+  });
+</script>
+
+</div>
+
+<div id="blog" class="stage">
+  <div class="blog-layout light-section">
+  <!-- Blog Header -->
+  <header class="blog-header marine-section section-pad">
+    <div class="container">
+      <h1 class="hero-title" style="font-size:clamp(40px, 6vw, 80px);">Insights, Strategy, &amp; Reasoning</h1>
+      <p class="body-copy" style="color:var(--gt-porcelain);">Breakdowns from GermaineTutoring.</p>
+    </div>
+  </header>
+
+  <main class="container section-pad">
+    <h2 class="section-heading dark-text">Recent Posts</h2>
+    <!-- Three-Card Post Index Row -->
+    <div class="grid-3 post-index">
+      <div class="post-card">
+        <div class="post-kicker">Reading Comprehension</div>
+        <h3 class="post-title">RC Question Type Map</h3>
+        <p class="post-excerpt">A deep dive into Reading Comprehension question structures.</p>
+        <a href="#" class="post-link">Read More &rarr;</a>
+      </div>
+      <div class="post-card">
+        <div class="post-kicker">Logical Reasoning</div>
+        <h3 class="post-title">Conditional Logic Quantifier Guide</h3>
+        <p class="post-excerpt">Navigating 'some', 'most', 'many', and 'all'.</p>
+        <a href="#" class="post-link">Read More &rarr;</a>
+      </div>
+      <div class="post-card">
+        <div class="post-kicker">Logical Reasoning</div>
+        <h3 class="post-title">Mastering the 21 LR Question Types</h3>
+        <p class="post-excerpt">A framework for routing instructions.</p>
+        <a href="#" class="post-link">Read More &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Campaign Section -->
+    <div class="campaign-header">
+      <h2 class="section-heading dark-text">Campaign: There Is No LSAT Magic</h2>
+      <p class="body-copy dark-text">The LSAT becomes manageable when you identify the repeatable job underneath each question.</p>
+    </div>
+
+    <div class="campaign-list">
+      <!-- Post 1 -->
+      <article class="campaign-post">
+        <div class="cp-meta">Post 1</div>
+        <h3 class="cp-title">I analyzed the full range of Flaw questions so you can start seeing the recurring patterns.</h3>
+        <p class="cp-message"><strong>Message:</strong> Flaw mastery is recognizing recurring reasoning breaks, not memorizing obscure flaw names.</p>
+        <div class="cp-asset">Asset: Flaw Atlas ranking chart (Causal, Sampling, Conditional, Quantifier, Comparison, Alternative-explanation, Circular, Part-to-whole).</div>
+      </article>
+
+      <!-- Post 2 -->
+      <article class="campaign-post">
+        <div class="cp-meta">Post 2</div>
+        <h3 class="cp-title">If LR is just reasoning, why do I need all these question types?</h3>
+        <p class="cp-message"><strong>Message:</strong> Question types are routing instructions. The same argument requires a different approach depending on the stem.</p>
+        <div class="cp-asset">Asset: The LR Question Map (Stem &rarr; Task &rarr; Standard &rarr; Operation &rarr; Answer).</div>
+      </article>
+
+      <!-- Post 3 -->
+      <article class="campaign-post">
+        <div class="cp-meta">Post 3</div>
+        <h3 class="cp-title">Why "I'm bad at science passages" is the wrong diagnosis.</h3>
+        <p class="cp-message"><strong>Message:</strong> Difficulty has components (viewpoint shifts, abstraction, nested syntax).</p>
+        <div class="cp-asset">Asset: RC difficulty ranking heatmap based on 22 drivers.</div>
+      </article>
+
+      <!-- Post 4 -->
+      <article class="campaign-post">
+        <div class="cp-meta">Post 4</div>
+        <h3 class="cp-title">Prephrasing is not predicting the answer.</h3>
+        <p class="cp-message"><strong>Message:</strong> Do your reasoning before the distractors influence it. (High-fidelity vs Structural vs Functional prephrase).</p>
+        <div class="cp-asset">Asset: Teaching carousel showing useful prephrasing.</div>
+      </article>
+
+      <!-- Post 5 -->
+      <article class="campaign-post">
+        <div class="cp-meta">Post 5</div>
+        <h3 class="cp-title">Watch me turn an 85-word stimulus into five simple statements.</h3>
+        <p class="cp-message"><strong>Message:</strong> Complex reasoning becomes manageable when you break it into simple parts.</p>
+        <div class="cp-asset">Asset: Screen-recorded walkthrough of Job &rarr; Claims &rarr; Roles &rarr; Compress &rarr; Connect &rarr; Prephrase.</div>
+      </article>
+
+      <!-- Post 6 -->
+      <article class="campaign-post">
+        <div class="cp-meta">Post 6</div>
+        <h3 class="cp-title">Your Wrong Answer Journal may not be helping you improve.</h3>
+        <p class="cp-message"><strong>Message:</strong> A review is useful only if it changes a future decision. Entries must identify the exact reasoning mistake and a forward-looking rule.</p>
+        <div class="cp-asset">Asset: Before/after carousel (Weak WAJ entry vs Actionable WAJ entry).</div>
+      </article>
+
+      <!-- Post 7 -->
+      <article class="campaign-post">
+        <div class="cp-meta">Post 7</div>
+        <h3 class="cp-title">There Is No LSAT Magic: Here Is Exactly Where My -0 Broke.</h3>
+        <p class="cp-message"><strong>Message:</strong> A strong section becomes easier to understand when you can see the decisions behind it.</p>
+        <div class="cp-asset">Asset: Full-section timed walkthrough showing the process in action under time pressure.</div>
+      </article>
+    </div>
+  </main>
+</div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.mockup-nav button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.mockup-nav button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+
+      btn.classList.add('active');
+      document.getElementById(btn.getAttribute('data-target')).classList.add('active');
+      window.scrollTo(0,0);
+    });
+  });
+</script>
+</body>
+</html>

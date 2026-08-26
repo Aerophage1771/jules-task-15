@@ -1,0 +1,50 @@
+/* Marketing Specific Styles */
+.marketing-header {
+  background: color-mix(in srgb, var(--gt-navy) 95%, transparent);
+  border-bottom: 1px solid var(--gt-slate);
+  padding: 16px 0;
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo { font-family: var(--didone); font-size: 24px; color: var(--gt-porcelain); }
+.logo span { font-style: italic; color: var(--gt-mist); }
+.marketing-nav { display: flex; gap: 32px; }
+.marketing-nav a {
+  color: var(--gt-porcelain); text-decoration: none; font-size: 14px;
+  font-weight: 500; letter-spacing: 0.05em; transition: color 0.2s;
+}
+.marketing-nav a:hover { color: var(--gt-mist); }
+
+.marketing-hero { text-align: center; padding: 120px 0; border-bottom: 1px solid var(--gt-slate); }
+.marketing-hero .hero-actions { margin-top: 48px; }
+
+.proof-strip { padding: 48px 0; border-bottom: 1px solid var(--gt-slate); }
+.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+.proof-item { border-right: 1px solid var(--gt-slate); }
+.proof-item:last-child { border-right: none; }
+.proof-num { font-family: var(--didone); font-size: 48px; color: var(--gt-porcelain); margin-bottom: 8px; }
+.proof-label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-mist); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.section-heading { font-family: var(--didone); font-size: 48px; margin-bottom: 32px; line-height: 1.1; }
+.section-heading.centered { text-align: center; }
+.subsection-heading { font-size: 18px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; margin-top: 32px; }
+
+.program-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+.program-card {
+  background: var(--gt-marine); padding: 40px; border: 1px solid var(--gt-slate);
+  display: flex; flex-direction: column; align-items: flex-start;
+  transition: transform 0.2s; position: relative;
+}
+.program-card.featured { border-color: var(--gt-oxblood); background: color-mix(in srgb, var(--gt-marine) 95%, var(--gt-oxblood)); transform: scale(1.02); }
+.featured-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gt-oxblood); color: var(--gt-porcelain); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 12px; border-radius: 20px; }
+.program-tier { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gt-mist); margin-bottom: 16px; }
+.program-name { font-family: var(--didone); font-size: 32px; margin-bottom: 16px; color: var(--gt-porcelain); }
+.program-desc { font-size: 15px; line-height: 1.5; color: var(--gt-mist); }
+
+.contact-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+
+.marketing-footer { padding: 64px 0 32px; border-top: 1px solid var(--gt-slate); }
+.footer-inner { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { color: var(--gt-mist); text-decoration: none; font-size: 14px; }
+.footer-copy { font-size: 13px; color: var(--gt-slate); }
